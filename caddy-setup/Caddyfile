@@ -1,0 +1,19 @@
+{
+    debug
+}
+
+https://localhost {
+    root * ./ 
+    file_server
+
+    header {
+        Cache-Control "no-store"
+        Pragma "no-cache"
+        Expires "0"
+    }
+
+    log {
+        output stdout
+        format console
+    }
+}
