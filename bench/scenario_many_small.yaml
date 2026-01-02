@@ -1,0 +1,10 @@
+name: many_small
+base_url: https://localhost
+requests:
+  - pattern: /scenarios/many_small/{001..100}
+concurrency: 50
+repetitions: 30
+metrics:
+  - ttfb_ms
+  - total_ms
+  - bytes

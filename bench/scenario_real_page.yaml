@@ -1,0 +1,16 @@
+name: real_page
+base_url: https://localhost
+entrypoint: /scenarios/real_page/
+assets:
+  - /scenarios/real_page/assets/css/site.css
+  - /scenarios/real_page/assets/js/site.js
+  - /scenarios/real_page/assets/img/img1.bin
+  - /scenarios/real_page/assets/img/img2.bin
+  - /scenarios/real_page/assets/img/img3.bin
+  - /scenarios/real_page/assets/img/img4.bin
+  - /scenarios/real_page/assets/img/img5.bin
+repetitions: 30
+metrics:
+  - ttfb_ms
+  - total_ms
+  - bytes

@@ -1,0 +1,9 @@
+name: large_file
+base_url: https://localhost
+url: /scenarios/large_file/100mb
+repetitions: 10
+metrics:
+  - ttfb_ms
+  - total_ms
+  - bytes
+  - throughput_mbps
