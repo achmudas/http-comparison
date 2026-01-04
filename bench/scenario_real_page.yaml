@@ -10,6 +10,12 @@ assets:
   - /scenarios/real_page/assets/img/img4.bin
   - /scenarios/real_page/assets/img/img5.bin
 repetitions: 30
+
+# Roughly matches browser parallelism
+concurrency: 6
+
+http_versions: [http1.1, http2, http3]
+
 metrics:
   - ttfb_ms
   - total_ms

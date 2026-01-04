@@ -2,6 +2,9 @@ name: many_small
 base_url: https://localhost
 requests:
   - pattern: /scenarios/many_small/{001..100}
+
+http_versions: [http1.1, http2, http3]
+
 concurrency: 50
 repetitions: 30
 metrics:

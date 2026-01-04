@@ -2,6 +2,12 @@ name: large_file
 base_url: https://localhost
 url: /scenarios/large_file/100mb
 repetitions: 10
+
+# One long-lived transfer at a time
+concurrency: 1
+
+http_versions: [http1.1, http2, http3]
+
 metrics:
   - ttfb_ms
   - total_ms
