@@ -90,15 +90,19 @@ def scenario_urls(scn: Dict[str, Any]) -> List[str]:
       - url: "/single"
       - urls: ["/a", "/b"]
       - requests: [{url: "/x"}] or [{pattern: "/x/{001..100}"}]
+      - entrypoint + assets (real page scenario)
     """
     urls: List[str] = []
 
+    # Single URL
     if isinstance(scn.get("url"), str):
         urls.append(scn["url"])
 
+    # List of URLs
     if isinstance(scn.get("urls"), list):
         urls.extend([u for u in scn["urls"] if isinstance(u, str)])
 
+    # Request definitions (with optional brace expansion)
     if isinstance(scn.get("requests"), list):
         for item in scn["requests"]:
             if isinstance(item, dict):
@@ -107,10 +111,28 @@ def scenario_urls(scn: Dict[str, Any]) -> List[str]:
                 elif isinstance(item.get("pattern"), str):
                     urls.extend(expand_brace_ranges(item["pattern"]))
 
+    # Real page scenario: entrypoint + assets
+    if isinstance(scn.get("entrypoint"), str):
+        urls.append(scn["entrypoint"])
+
+        if isinstance(scn.get("assets"), list):
+            urls.extend([a for a in scn["assets"] if isinstance(a, str)])
+
+    # Expand brace ranges everywhere (idempotent if none exist)
     expanded: List[str] = []
     for u in urls:
         expanded.extend(expand_brace_ranges(u))
-    return expanded
+
+    # Deduplicate while preserving order
+    seen = set()
+    out: List[str] = []
+    for u in expanded:
+        if u not in seen:
+            seen.add(u)
+            out.append(u)
+
+    return out
+
 
 
 # ---------- Curl execution ----------
