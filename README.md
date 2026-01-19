@@ -8,6 +8,18 @@ TBA some diagrams
 # How the test was done
 Ideal cases
 
+## Scenarios
+
+### Many small ones
+
+### Mimic real page load
+
+### Large file
+
+Why only 1 concurency?
+
+
+
 ```bash
 python bench_run.py bench/scenario_many_small.yaml \                                       
   --curl "$(brew --prefix curl)/bin/curl" \
@@ -70,6 +82,6 @@ python -m pip install pyyaml
 **Run**
 Use any scenario file under `bench/` (YAML or JSON). Results are appended to the JSONL file you specify.
 ```bash
-python bench_run.py bench/scenario_many_small.yaml --out out/results.jsonl --protocols h1,h2,h3
+python bench_run.py bench/scenario_many_small.yaml --out out/results.jsonl
 ```
-The script writes a metadata line plus one result per request to `out/results.jsonl`. Adjust `--protocols`, `--reps`, and `--concurrency` to override scenario defaults.
+The script writes a metadata line plus one result per request to `out/results.jsonl`. Adjust `--reps` and `--concurrency` to override scenario defaults.
